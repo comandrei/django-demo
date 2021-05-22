@@ -5,8 +5,9 @@
     <body>
         <h1>Student List</h1>
         <ul>
-            <li>Student 1</li>
-            <li>student 2</li>
+            {% for student in students %}
+                <li> {{ student }} </li>
+            {% endfor %}
         </ul>
     </body>
 </html>
