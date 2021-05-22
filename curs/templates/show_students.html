@@ -7,7 +7,7 @@
         <ul>
             {% for student in students %}
                 <li> 
-                    <a href="/curs/student/{{ student.pk }}/"> {{ student }} </a> 
+                    <a href="{% url 'student_detail' student.pk %}"> {{ student }} </a> 
                 </li>
             {% empty %} Nu s-au gasit rezultate 
             {% endfor %}
