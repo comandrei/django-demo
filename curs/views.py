@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from django.db.models import Q
 from .models import Student
@@ -14,3 +14,12 @@ def show_students(request):
     else:
         lista_studenti = Student.objects.all()
     return render(request, "show_students.html", {"students": lista_studenti})
+
+def show_student(request, student_id):
+    student = get_object_or_404(Student, pk=student_id)
+    # try:
+    #     student = Student.objects.get(pk=student_id)
+    #     render()
+    # except Student.DoesNotExist:
+    #     return 404
+    return render(request, "show_student.html", {"student": student})
