@@ -6,7 +6,9 @@
         <h1>Student List</h1>
         <ul>
             {% for student in students %}
-                <li> {{ student }} </li>
+                <li> 
+                    <a href="/curs/student/{{ student.pk }}/"> {{ student }} </a> 
+                </li>
             {% empty %} Nu s-au gasit rezultate 
             {% endfor %}
         </ul>
