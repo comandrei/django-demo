@@ -11,7 +11,7 @@ class Student(models.Model):
     nume = models.CharField(max_length=20)
     prenume = models.CharField(max_length=20, db_index=True)
     cursuri = models.ManyToManyField(Curs)
-    
+
     def __str__(self):
         return f'{self.prenume} {self.nume}'
 
