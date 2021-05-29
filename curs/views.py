@@ -12,7 +12,7 @@ def show_students(request):
         lista_studenti = Student.objects.filter(Q(nume__iexact=search) | Q(prenume__iexact=search))
         print(str(lista_studenti.query))
     else:
-        lista_studenti = Student.objects.all()
+        lista_studenti = Student.objects.prefetch_related('cursuri').all()
     return render(request, "show_students.html", {"students": lista_studenti})
 
 def show_student(request, student_id):
