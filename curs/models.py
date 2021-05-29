@@ -15,6 +15,9 @@ class Note(models.Model):
     nota = models.IntegerField()
     student = models.ForeignKey(Student, on_delete=models.PROTECT)
 
+    def __str__(self):
+        return f'{self.student} {self.nota}'
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     cod_postal = models.CharField(max_length=20)
