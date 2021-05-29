@@ -26,7 +26,11 @@ class Student(models.Model):
     objects = StudentManager()
 
     def __str__(self):
-        return f'{self.prenume} {self.nume}'
+        course_count = self.cursuri.count()
+        if course_count:
+            return f'{self.prenume} {self.nume} {course_count}'
+        else:
+            return f'{self.prenume} {self.nume}'
 
  
 
