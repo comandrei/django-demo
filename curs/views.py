@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 
 from django.db.models import Q
-from .models import Student
+from .models import Student, Curs
 
 def hello(request):
     return render(request, "index.html", {'name': 'dorel'})
@@ -23,3 +23,7 @@ def show_student(request, student_id):
     # except Student.DoesNotExist:
     #     return 404
     return render(request, "show_student.html", {"student": student})
+
+def show_curs(request, curs_id):
+    curs = get_object_or_404(Curs, id=curs_id)
+    return render(request, "show_curs.html", {"curs": curs})

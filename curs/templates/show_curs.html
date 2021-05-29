@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title> {{ curs }}</title>
+    </head>
+    <body>
+        <h1>{{ curs.nume }} </h1>
+        <div>
+            <h2> Students</h2>
+            <ul>
+            {% for student in curs.student_set.all %}
+                <li> {{ student }} </li>
+                {% empty %} <li> Nu sunt studenti</li>
+            {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
