@@ -5,6 +5,15 @@
     <body>
         {{ student }}
         <div>
+            <h1>Cursuri</h1>
+            <ul>
+             {% for curs in student.cursuri.all %}
+                <li> {{ curs }} </li>
+                {% empty %} <li>Nu sunt cursuri asociate acestui student </li>
+             {% endfor %}
+             </ul>
+        </div>
+        <div>
             <a href="{% url 'student_list' %}">Inapoi la pagina principala</a>
         </div>
     </body>

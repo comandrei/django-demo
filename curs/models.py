@@ -5,6 +5,9 @@ from django.contrib.auth.models import User
 class Curs(models.Model):
     nume = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.nume
+
 class Student(models.Model):
     class Meta:
         ordering = ("nume", )
