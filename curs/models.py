@@ -8,17 +8,27 @@ class Curs(models.Model):
     def __str__(self):
         return self.nume
 
+
+class StudentManager(models.Manager):
+
+    def seniors(self):
+        return self.filter(an=4)
+
+
 class Student(models.Model):
     class Meta:
         ordering = ("nume", )
     nume = models.CharField(max_length=20)
     prenume = models.CharField(max_length=20, db_index=True)
     cursuri = models.ManyToManyField(Curs)
+    an = models.IntegerField(default=1)
+    
+    objects = StudentManager()
 
     def __str__(self):
         return f'{self.prenume} {self.nume}'
 
-
+ 
 
 class Note(models.Model):
     nota = models.IntegerField()
