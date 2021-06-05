@@ -18,6 +18,8 @@ class StudentManager(models.Manager):
 class Student(models.Model):
     class Meta:
         ordering = ("nume", )
+        unique_together = ("nume", "prenume")
+
     nume = models.CharField(max_length=20)
     prenume = models.CharField(max_length=20, db_index=True)
     cursuri = models.ManyToManyField(Curs)
