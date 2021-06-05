@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 
 from django.db.models import Q
 from django.core.mail import send_mail
-from .forms import ContactForm
+from .forms import ContactForm, StudentForm
 from .models import Student, Curs
 
 def my_func():
@@ -48,7 +48,17 @@ def show_curs(request, curs_id):
     return render(request, "show_curs.html", {"curs": curs})
 
 def add_student(request):
-    return render(request, "add_student.html", {})
+    if request.method == "POST":
+        student_form = StudentForm(request.POST)
+        if student_form.is_valid():
+            Student.objects.create(
+                nume=student_form.cleaned_data['nume'],
+                prenume=student_form.cleaned_data['prenume'],
+                an=student_form.cleaned_data['an'],
+            )
+    else:
+        student_form = StudentForm()
+    return render(request, "add_student.html", {"form": student_form})
 
 def contact(request):
     if request.method == "POST":

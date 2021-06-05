@@ -1,4 +1,9 @@
 {% extends "base.html" %}
-{% block title %} Adaugare student % endblock title %]
+{% block title %} Adaugare student {% endblock title %}
 {% block body %} 
+<form method="POST" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Salveaza!" />
+</form>
 {% endblock %}
