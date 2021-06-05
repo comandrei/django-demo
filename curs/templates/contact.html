@@ -5,7 +5,10 @@ Contact
 <div>
     <form method="POST" action="">
         {% csrf_token %}
-        {{ form.as_p }}
+        {% for field in form %}
+            {{field.label }} - {{ field }} <br />
+            {% if field.errors %} <div style="color:red">{{ field.errors }}</div> {% endif %}
+        {% endfor %}
         <input type="submit" value="Send!" />
     </form>
 </div>
