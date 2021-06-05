@@ -4,7 +4,12 @@ from django.db.models import Q
 from .models import Student, Curs
 
 def hello(request):
-    return render(request, "index.html", {'name': 'dorel'})
+    my_dict = {
+        'unu': 1,
+        'doi': 2
+    }
+    my_list = [1,2,3]
+    return render(request, "index.html", {'name': 'dorel', 'my_dict': my_dict, 'my_list': my_list })
 
 def show_students(request):
     if 'search' in request.GET:
