@@ -3,13 +3,24 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from .models import Student, Curs
 
+def my_func():
+    return 'func'
+
 def hello(request):
     my_dict = {
         'unu': 1,
         'doi': 2
     }
     my_list = [1,2,3]
-    return render(request, "index.html", {'name': 'dorel', 'my_dict': my_dict, 'my_list': my_list })
+    ctx = { 
+        'name': 'dorel',
+        'my_dict': my_dict,
+        'my_list': my_list,
+        'my_func': my_func 
+    }
+    if True:
+        del ctx['my_dict']
+    return render(request, "index.html", ctx)
 
 def show_students(request):
     if 'search' in request.GET:
@@ -22,6 +33,7 @@ def show_students(request):
 
 def show_student(request, student_id):
     student = get_object_or_404(Student, pk=student_id)
+    
     # try:
     #     student = Student.objects.get(pk=student_id)
     #     render()
