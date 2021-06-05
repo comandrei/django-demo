@@ -47,7 +47,8 @@ def show_curs(request, curs_id):
     curs = get_object_or_404(Curs, id=curs_id)
     return render(request, "show_curs.html", {"curs": curs})
 
-
+def add_student(request):
+    return render(request, "add_student.html", {})
 
 def contact(request):
     if request.method == "POST":
