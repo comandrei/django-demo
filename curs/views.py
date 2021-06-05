@@ -44,3 +44,7 @@ def show_student(request, student_id):
 def show_curs(request, curs_id):
     curs = get_object_or_404(Curs, id=curs_id)
     return render(request, "show_curs.html", {"curs": curs})
+
+
+def contact(request):
+    return render(request, "contact.html", {})
