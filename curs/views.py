@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
 
 from django.db.models import Q
+from django.core.mail import send_mail
+from .forms import ContactForm
 from .models import Student, Curs
 
 def my_func():
@@ -46,5 +48,19 @@ def show_curs(request, curs_id):
     return render(request, "show_curs.html", {"curs": curs})
 
 
+
 def contact(request):
-    return render(request, "contact.html", {})
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form_data = form.cleaned_data
+            send_mail('subject',
+                form.cleaned_data['message'],
+                [form.cleaned_data['email']],
+                ['contact@domeniu.com'])
+        else:
+            form_data = {}
+    else:
+        form = ContactForm()
+        form_data = {}
+    return render(request, "contact.html", {'form': form, 'form_data': form_data})

@@ -2,4 +2,15 @@
 {% block title %} Contact {% endblock title %}
 {% block body %}
 Contact
+<div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Send!" />
+    </form>
+</div>
+<div>
+    Form data
+    {{ form_data }}
+</div>
 {% endblock %}
