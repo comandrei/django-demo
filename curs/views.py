@@ -53,8 +53,21 @@ def add_student(request):
         if student_form.is_valid():
             student_form.save()
     else:
-        student_form = StudentForm()
+        student_form = StudentForm(initial = {"nume": "Dorel"})
     return render(request, "add_student.html", {"form": student_form})
+
+def edit_student(request, student_id):
+    student = get_object_or_404(Student, pk=student_id)
+    saved = False
+    if request.method == "POST":
+        student_form = StudentForm(request.POST, instance=student)
+        if student_form.is_valid():
+            student_form.save()
+            saved = True
+        
+    else:
+        student_form = StudentForm(instance=student)
+    return render(request, "add_student.html", {"form": student_form, "saved": saved})
 
 def contact(request):
     if request.method == "POST":

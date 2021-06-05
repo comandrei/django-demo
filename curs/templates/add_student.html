@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block title %} Adaugare student {% endblock title %}
 {% block body %} 
+{% if saved %}
+<div style="color:green"> Salvat cu success!</div>
+{% endif %}
 <form method="POST" action="">
     {% csrf_token %}
     {{ form.as_p }}
