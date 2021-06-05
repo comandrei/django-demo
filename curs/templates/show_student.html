@@ -1,8 +1,6 @@
-<html>
-    <head>
-        <title> {{student }}</title>
-    </head>
-    <body>
+{% extends "base.html" %}
+{% block title %} {{student}} {% endblock %}
+{% block body %}
         {{ student }}
         <div>
             <h1>Cursuri</h1>
@@ -16,5 +14,5 @@
         <div>
             <a href="{% url 'student_list' %}">Inapoi la pagina principala</a>
         </div>
-    </body>
-</html>
+        {% include 'includes/sidebar.html' %}
+{% endblock %}
