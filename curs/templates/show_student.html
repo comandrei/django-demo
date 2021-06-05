@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load filtre_curs %}
 
-{% block title %} {{student}} {% endblock %}
+{% block title %} {{student}} {% endblock title %}
 {% block body %}
         {{ student | my_title:"aaa" }}
         {% my_tag %}
