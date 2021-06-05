@@ -51,11 +51,7 @@ def add_student(request):
     if request.method == "POST":
         student_form = StudentForm(request.POST)
         if student_form.is_valid():
-            Student.objects.create(
-                nume=student_form.cleaned_data['nume'],
-                prenume=student_form.cleaned_data['prenume'],
-                an=student_form.cleaned_data['an'],
-            )
+            student_form.save()
     else:
         student_form = StudentForm()
     return render(request, "add_student.html", {"form": student_form})
