@@ -2,7 +2,8 @@ from django.shortcuts import redirect, render, get_object_or_404
 
 from django.db.models import Q
 from django.core.mail import send_mail
-from .forms import ContactForm, StudentForm
+from django.contrib.auth import authenticate, login
+from .forms import ContactForm, StudentForm, LoginForm
 from .models import Student, Curs
 from .decorators import view_counter, decorator1
 
@@ -91,3 +92,20 @@ def contact(request):
         form = ContactForm()
         form_data = {}
     return render(request, "contact.html", {'form': form, 'form_data': form_data})
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
+            user = authenticate(request, username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect('/curs')
+    form = LoginForm()
+    return render(request, "login.html", {"form": form})
+
+def logout_view(request):
+    pass

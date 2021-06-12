@@ -12,3 +12,7 @@ class StudentForm(forms.ModelForm):
         model = Student
         fields = '__all__'
 
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=20)
+    password = forms.CharField(max_length=30, widget=forms.PasswordInput)
