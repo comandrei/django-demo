@@ -95,6 +95,7 @@ def contact(request):
 
 
 def login_view(request):
+    error_message = None
     if request.method == "POST":
         form = LoginForm(data=request.POST)
         if form.is_valid():
@@ -104,8 +105,10 @@ def login_view(request):
             if user:
                 login(request, user)
                 return redirect('/curs')
+            else:
+                error_message = "Nu avem userul"
     form = LoginForm()
-    return render(request, "login.html", {"form": form})
+    return render(request, "login.html", {"form": form, "error": error_message})
 
 def logout_view(request):
     pass
