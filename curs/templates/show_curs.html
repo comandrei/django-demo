@@ -1,9 +1,6 @@
-<html>
-    <head>
-        <title> {{ curs }}</title>
-    </head>
-    <body>
-        <h1>{{ curs.nume }} </h1>
+{% extends "base.html" %}
+{% block body %}
+<h1>{{ curs.nume }} </h1>
         <div>
             <h2> Students</h2>
             <ul>
@@ -13,5 +10,4 @@
             {% endfor %}
             </ul>
         </div>
-    </body>
-</html>
+{% endblock body %}

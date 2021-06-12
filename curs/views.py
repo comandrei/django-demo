@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render, get_object_or_404
 
 from django.db.models import Q
 from django.core.mail import send_mail
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from .forms import ContactForm, StudentForm, LoginForm
@@ -52,6 +54,7 @@ def show_student(request, student_id):
     #     return 404
     return render(request, "show_student.html", {"student": student})
 
+@cache_page(60)
 def show_curs(request, curs_id):
     curs = get_object_or_404(Curs, id=curs_id)
     return render(request, "show_curs.html", {"curs": curs})
