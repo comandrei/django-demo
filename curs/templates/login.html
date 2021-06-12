@@ -1,8 +1,5 @@
 {% extends "base.html" %} 
 {% block body %}
-{% if error %}
- {{ error }}
-{% endif %}
 <form method="POST" action="">
     {% csrf_token %}
     {{ form.as_p }}

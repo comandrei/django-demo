@@ -15,6 +15,18 @@
         {% endblock %}
         <footer>
         Copyright 2021 - Current user : {{ request.user }}
+            <div>
+                <h6>Messages from Django</h6>
+                {% for message in messages %}
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <div style="color:red">
+                        {{ message }}
+                    </div>
+                    {% else %}
+                        {{ message }}
+                    {% endif %}
+                {% endfor %}
+            </div>
         </footer>
     </body>
 </html>

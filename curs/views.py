@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 
 from django.db.models import Q
 from django.core.mail import send_mail
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from .forms import ContactForm, StudentForm, LoginForm
 from .models import Student, Curs
@@ -104,11 +105,12 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
+                messages.info(request, "User logat cu success")
                 return redirect('/curs')
             else:
-                error_message = "Nu avem userul"
+                messages.error(request, "Nu avem acest user")
     form = LoginForm()
-    return render(request, "login.html", {"form": form, "error": error_message})
+    return render(request, "login.html", {"form": form})
 
 def logout_view(request):
     pass
