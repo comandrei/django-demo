@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import ContactForm, StudentForm, LoginForm
 from .models import Student, Curs
 from .decorators import view_counter, decorator1
@@ -113,4 +113,5 @@ def login_view(request):
     return render(request, "login.html", {"form": form})
 
 def logout_view(request):
-    pass
+    logout(request)
+    return redirect('/curs')

@@ -10,7 +10,7 @@ urlpatterns = [
     path('contact', contact),
     path('add_student', add_student),
     path('edit_student/<int:student_id>/', edit_student),
-    path('login', login_view),
-    path('logout', logout_view),
+    path('login', login_view, name="login"),
+    path('logout', logout_view, name="logout"),
 
 ] 
