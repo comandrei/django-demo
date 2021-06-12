@@ -45,8 +45,13 @@ def show_students(request):
 
 def show_student(request, student_id):
     request.session['view_count'] = request.session.get('view_count', 0) + 1
-    student = get_object_or_404(Student, pk=student_id)
-    
+    key = f'cache_{student_id}'
+    student = cache.get(key, None)
+    if student is None:
+        print("miss", key)
+        #student = get_object_or_404(Student, pk=student_id)
+        student = Student.objects.prefetch_related('cursuri').get(pk=student_id)
+        cache.set(key, student, 15)    
     # try:
     #     student = Student.objects.get(pk=student_id)
     #     render()
