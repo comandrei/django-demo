@@ -4,11 +4,16 @@ from django.db.models import Q
 from django.core.mail import send_mail
 from .forms import ContactForm, StudentForm
 from .models import Student, Curs
+from .decorators import view_counter
+
+from django.utils import timezone
 
 def my_func():
     return 'func'
 
+@view_counter
 def hello(request):
+    request.session['today'] = str(timezone.now())
     my_dict = {
         'unu': 1,
         'doi': 2
@@ -34,6 +39,7 @@ def show_students(request):
     return render(request, "show_students.html", {"students": lista_studenti})
 
 def show_student(request, student_id):
+    request.session['view_count'] = request.session.get('view_count', 0) + 1
     student = get_object_or_404(Student, pk=student_id)
     
     # try:
