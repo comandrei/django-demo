@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.core.mail import send_mail
 from .forms import ContactForm, StudentForm
 from .models import Student, Curs
-from .decorators import view_counter
+from .decorators import view_counter, decorator1
 
 from django.utils import timezone
 
@@ -12,6 +12,7 @@ def my_func():
     return 'func'
 
 @view_counter
+@decorator1
 def hello(request):
     request.session['today'] = str(timezone.now())
     my_dict = {
