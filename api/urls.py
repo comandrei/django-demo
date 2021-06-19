@@ -1,9 +1,10 @@
 from django.urls import path, include
 from rest_framework import routers
-from .views import CursViewSet
+from .views import CursViewSet, StudentViewSet
 
 router = routers.DefaultRouter()
 router.register('curs', CursViewSet) #/api/curs
+router.register('student', StudentViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
