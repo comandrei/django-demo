@@ -10,6 +10,8 @@ class CursSerializer(serializers.ModelSerializer):
 
 
 class StudentSerializer(serializers.HyperlinkedModelSerializer):
+    cursuri = CursSerializer(many=True)
+    
     class Meta:
         model = Student
         fields = '__all__'
