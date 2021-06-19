@@ -9,7 +9,7 @@ class CursSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class StudentSerializer(serializers.ModelSerializer):
+class StudentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Student
         fields = '__all__'
