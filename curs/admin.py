@@ -5,6 +5,10 @@ admin.site.register(Note)
 admin.site.register(Curs)
 # Register your models here.
 
+class NotaInline(admin.TabularInline):
+    model = Note
+
+
 class StudentAdmin(admin.ModelAdmin):
     #list-view specific customizations
     list_per_page = 10
@@ -22,6 +26,7 @@ class StudentAdmin(admin.ModelAdmin):
             'classes': ['collapse']
         })
     ]
+    inlines = (NotaInline, )
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
