@@ -1,3 +1,5 @@
+import json
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 
 from django.db.models import Q
@@ -123,3 +125,14 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('/curs')
+
+
+def api_student(request, student_id):
+     student = get_object_or_404(Student, pk=student_id)
+
+     context = {
+        "nume": student.nume.upper(),
+        "prenume": student.prenume.upper()
+     }
+     
+     return HttpResponse(json.dumps(context), content_type="application/json")
