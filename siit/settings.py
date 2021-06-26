@@ -141,6 +141,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INTERNAL_IPS = [
     # ...
     '127.0.0.1',
+    '0.0.0.0',
     # ...
 ]
 
@@ -148,8 +149,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
+        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        'LOCATION': os.environ.get('MEMCACHED_LOCATION')+':11211',
     }
 }
 

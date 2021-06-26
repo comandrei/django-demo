@@ -1,5 +1,7 @@
 version: '3.7'
 services:
+    cache:
+        image: memcached
     db:
         image: postgres:12.2
         env_file: .env
@@ -13,5 +15,7 @@ services:
         command: python manage.py runserver 0.0.0.0:8000
         depends_on: 
             - db
+            - cache
         links: 
             - db
+            - cache
