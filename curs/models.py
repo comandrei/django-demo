@@ -33,6 +33,9 @@ class Student(models.Model):
             return f'{self.prenume} {self.nume} {course_count}'
         else:
             return f'{self.prenume} {self.nume}'
+    
+    def metoda_mea(self):
+        pass
 
  
 
