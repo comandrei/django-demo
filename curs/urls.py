@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import hello, show_students, show_student, show_curs,\
-     contact, add_student, edit_student, login_view, logout_view, api_student 
+     contact, add_student, edit_student, login_view, logout_view, api_student, signup 
 
 urlpatterns = [
     path('', hello),
@@ -12,7 +12,7 @@ urlpatterns = [
     path('edit_student/<int:student_id>/', edit_student),
     path('login', login_view, name="login"),
     path('logout', logout_view, name="logout"),
-
+    path('signup', signup, name="signup"),
     path('api/student/<int:student_id>', api_student),
 
 ] 
