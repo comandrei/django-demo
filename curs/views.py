@@ -8,6 +8,8 @@ from django.views.decorators.cache import cache_page
 from django.core.cache import cache
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import UserCreationForm
+
 from .forms import ContactForm, StudentForm, LoginForm
 from .models import Student, Curs
 from .decorators import view_counter, decorator1
@@ -126,6 +128,19 @@ def logout_view(request):
     logout(request)
     return redirect('/curs')
 
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
 def api_student(request, student_id):
      student = get_object_or_404(Student, pk=student_id)
