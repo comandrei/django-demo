@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import hello, show_students, show_student, show_curs,\
-     contact, add_student, edit_student, login_view, logout_view, api_student 
+     contact, add_student, edit_student, login_view, logout_view, api_student, xss_example 
 
 urlpatterns = [
     path('', hello),
@@ -14,5 +14,6 @@ urlpatterns = [
     path('logout', logout_view, name="logout"),
 
     path('api/student/<int:student_id>', api_student),
+    path('xss/', xss_example),
 
 ] 

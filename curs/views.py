@@ -136,3 +136,9 @@ def api_student(request, student_id):
      }
      
      return HttpResponse(json.dumps(context), content_type="application/json")
+
+def xss_example(request):
+    context = {
+        "user_input": request.GET.get("foo")
+    }
+    return render(request, "example.html", context)
